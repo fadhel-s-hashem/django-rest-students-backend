@@ -89,12 +89,20 @@ WSGI_APPLICATION = 'student_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# replace the SQLite configuration with a PostgreSQL DATABASES
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": os.getenv(
+            "DATABASE_ENGINE", "django.db.backends.postgresql"
+        ),
+        "NAME": os.getenv("DATABASE_NAME", "hoot_api"),
+        "USER": os.getenv("DATABASE_USER", ""),
+        "PASSWORD": os.getenv("DATABASE_PASSWORD", ""),
+        "HOST": os.getenv("DATABASE_HOST", "localhost"),
+        "PORT": os.getenv("DATABASE_PORT", "5432"),
     }
 }
+
 
 
 # Password validation
