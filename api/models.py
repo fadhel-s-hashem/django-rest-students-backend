@@ -3,11 +3,6 @@ from django.db import models
 #  almos how every model well look like 
 class Student(models.Model):
     # Add the three fields.
-    GENDER_CHOICES = [
-        ('Male'),
-        ('Female'),
-
-    ]
 
     name = models.CharField(max_length=100)
     favorite_food = models.CharField(max_length=100)

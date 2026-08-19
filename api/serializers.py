@@ -2,20 +2,21 @@ from rest_framework import serializers
 
 from .models import Student
 
-class StudentSerializers(serializers.ModelSerializer):
+class StudentSerializer(serializers.ModelSerializer):
     _id = serializers.CharField(source="pk", read_only=True)
-    favorite_food = serializers.CharField(
+    # 📚 name and source must not match (favoriteFood) (favorite_food)
+    favoriteFood = serializers.CharField(
         source="favorite_food",
         max_length=100
         
     )
 
-    favorite_emoji = serializers.CharField(
+    favoriteEmoji = serializers.CharField(
         source="favorite_emoji",
         max_length=20
         
     )
 
-class Meta:
-    model = Student
-    fields = ["_id", "name", "favoriteFood", "favoriteEmoji"]
+    class Meta:
+        model = Student
+        fields = ["_id", "name", "favoriteEmoji", "favoriteFood"]
