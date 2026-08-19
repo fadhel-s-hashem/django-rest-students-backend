@@ -89,6 +89,7 @@ WSGI_APPLICATION = 'student_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
 # replace the SQLite configuration with a PostgreSQL DATABASES
 DATABASES = {
     "default": {
