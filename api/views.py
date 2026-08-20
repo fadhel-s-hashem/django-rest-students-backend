@@ -59,5 +59,7 @@ def student_detail(request, student_id):
             return Response(serializer.data)
         
     # Save the ID as a string, delete the instance, and return JSON.
-        
+        deleted_id = str(student.id)
+        student.delete()
+        return Response ({"message" : "student deleted", "_id": deleted_id})
 
