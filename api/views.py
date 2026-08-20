@@ -36,3 +36,28 @@ def student_list_create(request):
 '''
 Why many=True? The GET branch serializes a collection. The POST branch handles one incoming object, so it must not use many=True.
 '''
+
+@api_view(["GET", "PUT", "DELETE"])
+def student_detail(request, student_id):
+    # Find the student or return 404.
+    '''
+    use this so if there no match route appear error
+    '''
+    student= get_object_or_404(Student, pk=student_id)
+
+    if request.method == "GET":
+        # Serialize and return one student.
+        Serializer = StudentSerializer(student)
+        return Response(Serializer.data)
+
+    if request.method == "PUT":
+        serializer = StudentSerializer(student, data= request.data)
+        # Validate request.data against the existing instance.
+        if serializer.is_valid():
+            serializer.save()
+        # Return the updated object or validation errors.
+            return Response(serializer.data)
+        
+    # Save the ID as a string, delete the instance, and return JSON.
+        
+
